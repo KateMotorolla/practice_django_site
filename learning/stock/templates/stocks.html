@@ -5,29 +5,31 @@
     <title>List of Stocks</title>
 </head>
 <body>
-    <table>
+{% extends 'base.html' %}
+{% block content %}
+    <table class="table">
         <thead>
-    		<tr>
-        		<th>Logo</th> <!--новая колонка в заголовке таблицы-->
-        		<th>Ticker</th>
-        		<th>Company</th>
-        		<th>Last close price</th>
-    		</tr>
-	</thead>
-	<tbody>
-	{% for stock in stocks %}
-    		<tr>
-        		<td> <!--новая колонка в теле таблицы-->
-            		{% if stock.logo %}
-            		<img src="{{ MEDIA_URL }}/{{ stock.logo }}" width="40" />
-            		{% endif %}
-        		</td>
-        		<td>{{ stock.ticker }}</td>
-        		<td>{{ stock.name }}</td>
-        		<td>{{ stock.get_random_price }}{{ stock.currency.sign }}</td>
-    		</tr>
-	{% endfor %}
-	</tbody>
+            <tr>
+                <th>Логотип</th>
+                <th>Тикер</th>
+                <th>Компания</th>
+                <th>Последняя цена</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for stock in stocks %}
+            <tr>
+                <td>
+                    {% if stock.logo %}
+                    <img src="{{ MEDIA_URL }}/{{ stock.logo }}" width="40" /></td>
+                    {% endif %}
+                <td>{{ stock.ticker }}</td>
+                <td>{{ stock.name }}</td>
+                <td>{{ stock.get_random_price }}{{ stock.currency.sign }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
     </table>
+{% endblock %}
 </body>
 </html>
