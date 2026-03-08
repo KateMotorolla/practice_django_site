@@ -7,21 +7,27 @@
 <body>
     <table>
         <thead>
-            <tr>
-                <th>Ticker</th>
-                <th>Company</th>
-                <th>Last close price</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for stock in stocks %}
-            <tr>
-                <td>{{ stock.ticker }}</td>
-                <td>{{ stock.name }}</td>
-                <td>{{ stock.get_random_price }}{{ stock.currency.sign }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
+    		<tr>
+        		<th>Logo</th> <!--новая колонка в заголовке таблицы-->
+        		<th>Ticker</th>
+        		<th>Company</th>
+        		<th>Last close price</th>
+    		</tr>
+	</thead>
+	<tbody>
+	{% for stock in stocks %}
+    		<tr>
+        		<td> <!--новая колонка в теле таблицы-->
+            		{% if stock.logo %}
+            		<img src="{{ MEDIA_URL }}/{{ stock.logo }}" width="40" />
+            		{% endif %}
+        		</td>
+        		<td>{{ stock.ticker }}</td>
+        		<td>{{ stock.name }}</td>
+        		<td>{{ stock.get_random_price }}{{ stock.currency.sign }}</td>
+    		</tr>
+	{% endfor %}
+	</tbody>
     </table>
 </body>
 </html>
