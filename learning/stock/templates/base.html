@@ -15,10 +15,11 @@
             <div class="col">
               {% if user.is_authenticated %}
                 <form method="post" action="{% url 'logout' %}">
-                  {% csrf_token %}
-                  <span>Добро пожаловать, {{ user.username }}</span> |
-                  <button type="submit">Выход</button>
-                </form>
+  			{% csrf_token %}
+  			<span>Добро пожаловать, {{ user.username }}</span> |
+  			<a href="{% url 'stock:account' %}">Личный кабинет</a> |
+  			<button type="submit">Выход</button>
+		</form>
               {% else %}
                 <a href="{% url 'login' %}">Вход</a>
               {% endif %}
